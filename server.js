@@ -20,6 +20,8 @@ app.get("/notes", (req, res) => {
 
 });
 
+app.get('/api/notes/')
+
 app.post("/api/notes", (req, res) => {
   fs.readFile(__dirname + "/db/db.json", 'utf8', (error, notes) => {
     if (error) {
@@ -27,7 +29,7 @@ app.post("/api/notes", (req, res) => {
     }
     notes = JSON.parse(notes)
 
-    let id = notes[notes.length - 1].id + 1
+    let id = notes.length;
     let newNote = { title: req.body.title, text: req.body.text, id: id }
     let activeNote = notes.concat(newNote)
 
