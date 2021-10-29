@@ -29,14 +29,14 @@ app.post("/api/notes", (req, res) => {
 
     let id = notes[notes.length - 1].id + 1
     let newNote = { title: req.body.title, text: req.body.text, id: id }
-    let currentNote = notes.concat(newNote)
+    let activeNote = notes.concat(newNote)
 
-    fs.writeFile(__dirname + "/db/db.json", JSON.stringify(currentNote), (error, data) => {
+    fs.writeFile(__dirname + "/db/db.json", JSON.stringify(activeNote), (error, data) => {
       if (error) {
         return error
       }
-      console.log(currentNote)
-      res.json(currentNote);
+      console.log(activeNote)
+      res.json(activeNote);
     })
   })
 })
